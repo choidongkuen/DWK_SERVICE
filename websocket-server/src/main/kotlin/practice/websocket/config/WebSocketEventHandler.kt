@@ -12,7 +12,7 @@ import org.springframework.web.socket.messaging.SessionUnsubscribeEvent
 
 // 실제 메세지 처리
 @Component
-class STOMPWebSocketEventHandler {
+class WebSocketEventHandler {
     private val logger = KotlinLogging.logger {}
 
     // 연결 시
@@ -28,6 +28,7 @@ class STOMPWebSocketEventHandler {
     }
 
     // 구독 해제 시
+    @EventListener
     fun handleWebSocketSessionUnsubscribeEventListener(event: SessionUnsubscribeEvent) {
         logger.info { ">>> Received a SessionUnsubscribeEvent" }
     }
@@ -43,5 +44,4 @@ class STOMPWebSocketEventHandler {
     fun handlerWebSocketSessionDisconnectedEventListener(event: SessionDisconnectEvent) {
         logger.info { ">>> Received a SessionDisconnectEvent" }
     }
-
 }

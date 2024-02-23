@@ -1,14 +1,12 @@
-package practice
+package practice.websocket
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-
-class WebSocketClientApplication {
+class WebSocketServerApplication {
 }
 
 fun main(args: Array<String>) {
-    runApplication<WebSocketClientApplication>(*args)
+    runApplication<WebSocketServerApplication>(*args)
 }
-

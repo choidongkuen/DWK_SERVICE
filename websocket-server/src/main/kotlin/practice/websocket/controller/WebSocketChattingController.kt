@@ -8,7 +8,7 @@ import org.springframework.web.util.HtmlUtils
 
 
 @Controller
-class STOMPChattingController {
+class WebSocketChattingController {
 
     private val logger = KotlinLogging.logger {}
 
