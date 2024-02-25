@@ -4,3 +4,4 @@ plugins {
 rootProject.name = "websocket"
 include("websocket-client")
 include("websocket-server")
+include("delivery-server")

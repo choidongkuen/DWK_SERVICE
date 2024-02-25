@@ -1,0 +1,3 @@
+package delivery
+
+class DeliveryServerApplication

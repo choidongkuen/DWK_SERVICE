@@ -32,11 +32,10 @@ class WebSocketClientConfiguration {
         stompHeaders.add("name", "choi")
 
         val urlVariables = arrayOf<Any>()
-        webSocketStompClient.connectAsync(ENDPOINT, null, stompHeaders, stompSessionHandler, urlVariables)
+        webSocketStompClient.connectAsync(ENDPOINT,null, stompHeaders, stompHeaders, stompSessionHandler, urlVariables)
+
 
         return webSocketStompClient
-
-
     }
 
     @Bean
