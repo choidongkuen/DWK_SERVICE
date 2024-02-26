@@ -24,7 +24,6 @@ class WebSocketClientConfiguration {
         webSocketStompClient: WebSocketStompClient,
         stompSessionHandler: StompSessionHandler,
     ): WebSocketStompClient {
-
         webSocketStompClient.messageConverter = MappingJackson2MessageConverter()
 
         // 헤더 설정 방법
@@ -32,8 +31,7 @@ class WebSocketClientConfiguration {
         stompHeaders.add("name", "choi")
 
         val urlVariables = arrayOf<Any>()
-        webSocketStompClient.connectAsync(ENDPOINT,null, stompHeaders, stompHeaders, stompSessionHandler, urlVariables)
-
+        webSocketStompClient.connectAsync(ENDPOINT, stompSessionHandler, stompHeaders, stompHeaders, stompSessionHandler, urlVariables)
 
         return webSocketStompClient
     }
@@ -44,10 +42,8 @@ class WebSocketClientConfiguration {
         return WebSocketStompClient(webSocketClient)
     }
 
-
     @Bean
     fun stompSessionHandler(objectMapper: ObjectMapper): StompSessionHandler? {
         return ClientWebSocketStompSessionHandler(objectMapper)
-
     }
 }

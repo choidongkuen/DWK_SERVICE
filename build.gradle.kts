@@ -1,39 +1,50 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "3.2.2"
-    id("io.spring.dependency-management") version "1.1.4"
+    id("io.spring.dependency-management") version "1.1.4" apply false
+    id("org.springframework.boot") version "3.2.2" apply false
     kotlin("jvm") version "1.9.22"
-    kotlin("plugin.spring") version "1.9.22"
-    id("org.jlleitschuh.gradle.ktlint") version "12.1.0"
-
+    kotlin("plugin.spring") version "1.9.22" apply false
 }
 
 group = "com.websocket"
-version = "0.0.1-SNAPSHOT"
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
-}
+allprojects{
+    version = "0.0.1-SNAPSHOT"
 
-repositories {
-    mavenCentral()
-}
+    tasks.withType<JavaCompile>() {
+        sourceCompatibility = "17"
+        targetCompatibility = "17"
 
-dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-websocket")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    implementation("io.github.oshai:kotlin-logging-jvm:5.1.0")
-}
+    }
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs += "-Xjsr305=strict"
-        jvmTarget = "17"
+    tasks.withType<KotlinCompile> {
+        kotlinOptions {
+            freeCompilerArgs += "-Xjsr305=strict"
+            jvmTarget = "17"
+        }
+    }
+
+    tasks.withType<Test> {
+        useJUnitPlatform()
+    }
+
+    repositories {
+        mavenCentral()
     }
 }
 
-tasks.withType<Test> {
-    useJUnitPlatform()
+subprojects {
+    apply(plugin = "io.spring.dependency-management")
+    apply(plugin = "org.springframework.boot")
+    apply(plugin = "org.jetbrains.kotlin.plugin.spring")
+    apply(plugin = "kotlin")
+
+    dependencies {
+        implementation("org.springframework.boot:spring-boot-starter-web")
+        implementation("org.jetbrains.kotlin:kotlin-reflect")
+        implementation("io.github.oshai:kotlin-logging-jvm:5.1.0")
+        testImplementation("org.springframework.boot:spring-boot-starter-test")
+        testImplementation("org.jetbrains.kotlin:kotlin-test")
+    }
 }

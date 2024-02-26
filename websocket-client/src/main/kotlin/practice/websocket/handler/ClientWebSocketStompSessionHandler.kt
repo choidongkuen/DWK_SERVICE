@@ -15,7 +15,6 @@ import java.lang.reflect.Type
 class ClientWebSocketStompSessionHandler(
     val objectMapper: ObjectMapper,
 ) : StompSessionHandlerAdapter() {
-
     companion object {
         private const val SUB_PREFIX = "topic"
         private const val PUB_PREFIX = "app"
@@ -27,7 +26,10 @@ class ClientWebSocketStompSessionHandler(
     }
 
     // 메세지(frame) 수신
-    override fun handleFrame(headers: StompHeaders, payload: Any?) {
+    override fun handleFrame(
+        headers: StompHeaders,
+        payload: Any?,
+    ) {
         logger.info { ">>> handleFrame, $headers" }
 
         // 구독한 채널의 메세지 수신
@@ -45,7 +47,10 @@ class ClientWebSocketStompSessionHandler(
     }
 
     // 연결 후
-    override fun afterConnected(session: StompSession, connectedHeaders: StompHeaders) {
+    override fun afterConnected(
+        session: StompSession,
+        connectedHeaders: StompHeaders,
+    ) {
         logger.info { ">>> After Connected" }
 
         // 구독
@@ -57,9 +62,8 @@ class ClientWebSocketStompSessionHandler(
 
         // 메시지 발신
         session.send(PUBLISH_DEST, params)
-        logger.info { "params = ${params}" }
+        logger.info { "params = $params" }
     }
-
 
     override fun handleException(
         session: StompSession,
@@ -72,7 +76,10 @@ class ClientWebSocketStompSessionHandler(
         logger.info { "exception: $exception" }
     }
 
-    override fun handleTransportError(session: StompSession, exception: Throwable) {
+    override fun handleTransportError(
+        session: StompSession,
+        exception: Throwable,
+    ) {
         logger.info { ">>> handleTransportError, ${exception.message}" }
     }
 }
