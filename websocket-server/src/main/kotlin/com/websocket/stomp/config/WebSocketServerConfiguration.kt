@@ -6,12 +6,10 @@ import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBr
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer
 
-
 // STOMP 을 통한 웹 소켓 설정(내부 브로커)
 @Configuration
 @EnableWebSocketMessageBroker
 class WebSocketServerConfiguration : WebSocketMessageBrokerConfigurer {
-
     companion object {
         private const val ENDPOINT = "/hello-websocket-chatting" // 클라이언트 초기 웹 소켓 접속 앤드포인트
 

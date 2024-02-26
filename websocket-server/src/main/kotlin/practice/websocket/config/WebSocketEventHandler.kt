@@ -9,7 +9,6 @@ import org.springframework.web.socket.messaging.SessionDisconnectEvent
 import org.springframework.web.socket.messaging.SessionSubscribeEvent
 import org.springframework.web.socket.messaging.SessionUnsubscribeEvent
 
-
 // 실제 메세지 처리
 @Component
 class WebSocketEventHandler {

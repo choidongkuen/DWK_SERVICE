@@ -6,10 +6,8 @@ import org.springframework.messaging.handler.annotation.SendTo
 import org.springframework.stereotype.Controller
 import org.springframework.web.util.HtmlUtils
 
-
 @Controller
 class WebSocketChattingController {
-
     private val logger = KotlinLogging.logger {}
 
     // 일반적인 Controller 유사
